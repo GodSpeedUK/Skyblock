@@ -61,6 +61,5 @@ public class InfoCommand extends AbstractSubCommand {
         }
 
         return Optional.of(SkyblockCore.getInstance().getIslandManager().get(ud.getIsland()));
-
     }
 }

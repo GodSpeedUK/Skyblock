@@ -16,12 +16,11 @@ public class IslandManager extends Manager<Integer, Island> {
 
     private static final File DIRECTORY = new File(SkyblockCore.getInstance().getDataFolder(), "islands");
 
-    private final List<Integer> pendingSave;
-
+    private final HashSet<Integer> pendingSave;
 
     public IslandManager() {
         loadAll();
-        this.pendingSave = new ArrayList<>();
+        this.pendingSave = new HashSet<>();
         long duration = Config.SAVE_INTERVAL.getInt() * 20L;
         Bukkit.getScheduler().scheduleSyncRepeatingTask(SkyblockCore.getInstance(), () -> Bukkit.getScheduler().runTaskAsynchronously(SkyblockCore.getInstance(), this::runSaveTask), duration, duration);
     }
@@ -54,7 +53,21 @@ public class IslandManager extends Manager<Integer, Island> {
 
         Island island = new Island(id, uuid);
 
+        pendingSave.add(id);
+
         insert(id, island);
+    }
+
+    @Override
+    public Island get(Integer key) {
+        Island island = super.get(key);
+        if (island == null) {
+            return null;
+        }
+
+        pendingSave.add(key);
+
+        return island;
     }
 
     public void saveIsland(Island island) {
