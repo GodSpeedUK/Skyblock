@@ -27,14 +27,14 @@ public final class SkyblockCore extends CustomPlugin {
 
     @Override
     public void enable() {
+        instance = this;
         if (!setupEconomy() ) {
             Bukkit.getConsoleSender().sendMessage("[%s] - Disabled due to no Vault dependency found!");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        Serialization.register(ValuableBlock.class);
-        Serialization.register(ValuableBlockList.class);
-        instance = this;
+        //Serialization.register(ValuableBlockList.class);
+        //Serialization.register(ValuableBlock.class);
         Configuration.loadConfig(new YamlFile("config.yml", this.getDataFolder().getAbsolutePath(), null, this), Config.values());
         Configuration.loadConfig(new YamlFile("messages.yml", this.getDataFolder().getAbsolutePath(), null, this), Message.values());
         this.islandManager = new IslandManager();

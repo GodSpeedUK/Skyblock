@@ -89,7 +89,8 @@ public class Island {
             return;
         }
         invited.add(target.getUniqueId());
-        Message.ISLAND_MEMBER_INVITE.send(inviter);
+        Message.ISLAND_MEMBER_INVITE.send(inviter, new Placeholder("{target}", target.getName()));
+        Message.ISLAND_INVITE_RECEIVED.send(target, new Placeholder("{player}", inviter.getName()));
     }
 
     public boolean isInvited(Player player) {

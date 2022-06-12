@@ -16,7 +16,7 @@ import java.util.*;
 public class JoinCommand extends AbstractSubCommand {
 
     public JoinCommand() {
-        super("/island join (Player)", Collections.singletonList("join"));
+        super("/island join (Player)", Collections.singletonList("Join"));
         setPlayer(true);
     }
 

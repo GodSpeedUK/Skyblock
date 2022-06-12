@@ -14,7 +14,7 @@ import java.util.Arrays;
 public enum Config implements Configuration {
 
     SAVE_INTERVAL("save-interval", 300),
-    VALUABLE_BLOCKS("valuable-blocks", ValuableBlockList.builder()
+    /*VALUABLE_BLOCKS("valuable-blocks", ValuableBlockList.builder()
             .valuableBlockList(Arrays.asList(
                     ValuableBlock.builder()
                             .material(Material.EMERALD_BLOCK)
@@ -26,8 +26,23 @@ public enum Config implements Configuration {
                             .material(Material.GOLD_BLOCK)
                             .value(3)
                             .build()
-            ))),
-    ISLAND_MAX_MEMBERS("island_max_members", 5);
+            )))*/
+    ISLAND_MAX_MEMBERS("island_max_members", 5),
+
+    SCOREBOARD_TITLE("scoreboard.title", "&3&lMINE&e&lCORE"),
+    SCOREBOARD_BOARD("scoreboard.board", Arrays.asList(
+            "&7&m-----------------------",
+            "",
+            "&b{player}",
+            " &e●&7 Money: &a{money}",
+            " &e●&7 MobCoins: &c{mobcoins}",
+            " &e●&7 Currency: &b{currency}",
+            "",
+            "&b{island}",
+            " &e●&7 Leader: &b{islandLeader}",
+            " &e●&7 Value: &b{islandValue}",
+            "&7&m-----------------------"
+    ));
 
     @Getter
     private final String path;

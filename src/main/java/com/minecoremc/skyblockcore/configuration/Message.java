@@ -17,7 +17,9 @@ public enum Message implements Configuration, me.dan.pluginapi.message.Message {
     ISLAND_CREATE_ALREADY_HAVE_ISLAND("island.create.already-have-island", "{prefix}You already have an island!"),
     ISLAND_CREATE_CREATED("island.create.created", "{prefix}You have created an Island! Use: /island tp"),
     ALREADY_INVITED_TO_ISLAND("island.invite.already-been-invited", "{prefix}This player has already been invited!"),
-    ISLAND_MEMBER_INVITE("island.invite.sent", "{prefix}This player has been invited to your island!"),
+    ISLAND_MEMBER_INVITE("island.invite.sent", "{prefix}{target}has been invited to your island!"),
+
+    ISLAND_INVITE_RECEIVED("island.invite.received", "{prefix}{player} has invited you to there island!"),
     ISLAND_NOT_FOUND("island.not-found", "{prefix}That island does not exist!"),
     ISLAND_JOIN_ALREADY_IN_ISLAND("island.join.already-in-island", "{prefix}You are already a member of an island!"),
     ISLAND_JOIN_NOT_INVITED("island.join.not-invited", "{prefix}You need an invite to join this island!"),
@@ -36,21 +38,6 @@ public enum Message implements Configuration, me.dan.pluginapi.message.Message {
             "{members}",
             " ",
             "&8&l=========================="
-    )),
-
-    SCOREBOARD_TITLE("scoreboard.title", "&3&lMINE&e&lCORE"),
-    SCOREBOARD_BOARD("scoreboard.board", Arrays.asList(
-            "&7&m-----------------------",
-            "",
-            "&b&{player}",
-            " &e●&7 Money: &a{money}",
-            " &e●&7 MobCoins: &c{mobcoins}",
-            " &e●&7 Currency: &b{currency}",
-            "",
-            "&b&{island}",
-            " &e●&7 Leader: &b{islandLeader}",
-            " &e●&7 Value: &b{islandValue}",
-            "&7&m-----------------------"
     ));
 
     @Getter
