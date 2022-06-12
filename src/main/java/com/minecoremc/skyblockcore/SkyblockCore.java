@@ -6,6 +6,7 @@ import com.minecoremc.skyblockcore.command.IslandCommand;
 import com.minecoremc.skyblockcore.configuration.Config;
 import com.minecoremc.skyblockcore.configuration.Message;
 import com.minecoremc.skyblockcore.island.IslandManager;
+import com.minecoremc.skyblockcore.scoreboard.*;
 import lombok.Getter;
 import me.dan.pluginapi.configuration.Configuration;
 import me.dan.pluginapi.configuration.Serialization;
@@ -29,6 +30,8 @@ public final class SkyblockCore extends CustomPlugin {
         Serialization.register(ValuableBlockList.class);
         this.islandManager = new IslandManager();
         registerCommands(new IslandCommand());
+
+        new ScoreboardManager(this, new Scoreboard());
     }
 
     @Override

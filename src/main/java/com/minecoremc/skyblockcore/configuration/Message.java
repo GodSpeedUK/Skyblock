@@ -36,6 +36,21 @@ public enum Message implements Configuration, me.dan.pluginapi.message.Message {
             "{members}",
             " ",
             "&8&l=========================="
+    )),
+
+    SCOREBOARD_TITLE("scoreboard.title", "&3&lMINE&e&lCORE"),
+    SCOREBOARD_BOARD("scoreboard.board", Arrays.asList(
+            "&7&m-----------------------",
+            "",
+            "&b&{player}",
+            " &e●&7 Money: &a{money}",
+            " &e●&7 MobCoins: &c{mobcoins}",
+            " &e●&7 Currency: &b{currency}",
+            "",
+            "&b&{island}",
+            " &e●&7 Leader: &b{islandLeader}",
+            " &e●&7 Value: &b{islandValue}",
+            "&7&m-----------------------"
     ));
 
     @Getter
