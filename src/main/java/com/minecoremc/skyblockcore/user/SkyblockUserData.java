@@ -17,4 +17,9 @@ public class SkyblockUserData extends UserData {
     public SkyblockUserData(UUID uuid) {
         super(uuid);
     }
+
+    public boolean hasIsland() {
+        return island > 0;
+    }
+
 }

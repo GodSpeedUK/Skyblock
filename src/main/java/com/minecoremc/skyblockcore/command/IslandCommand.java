@@ -12,7 +12,7 @@ public class IslandCommand extends AbstractCommand {
         super("island");
         setAliases(Collections.singletonList("is"));
         setUsage("/island");
-        addSubCommands(new CreateCommand(), new InviteCommand(), new MembersCommand(), new JoinCommand());
+        addSubCommands(new CreateCommand(), new InviteCommand(), new InfoCommand(), new JoinCommand());
     }
 
     @Override

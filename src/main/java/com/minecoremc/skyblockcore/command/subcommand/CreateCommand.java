@@ -1,7 +1,7 @@
 package com.minecoremc.skyblockcore.command.subcommand;
 
 import com.minecoremc.skyblockcore.SkyblockCore;
-import com.minecoremc.skyblockcore.configuration.Messages;
+import com.minecoremc.skyblockcore.configuration.Message;
 import com.minecoremc.skyblockcore.user.SkyblockUserData;
 import me.dan.pluginapi.command.AbstractSubCommand;
 import me.dan.pluginapi.command.CommandContext;
@@ -9,7 +9,6 @@ import me.dan.pluginapi.user.User;
 import org.bukkit.entity.Player;
 
 import java.util.Collections;
-import java.util.List;
 
 public class CreateCommand extends AbstractSubCommand {
 
@@ -24,12 +23,12 @@ public class CreateCommand extends AbstractSubCommand {
         SkyblockUserData userData = User.get(player.getUniqueId()).getUserData(SkyblockUserData.class);
 
         if (userData.getIsland() > 0) {
-            Messages.ISLAND_CREATE_ALREADY_HAVE_ISLAND.send(player);
+            Message.ISLAND_CREATE_ALREADY_HAVE_ISLAND.send(player);
             return;
         }
 
         SkyblockCore.getInstance().getIslandManager().createIsland(player);
 
-        Messages.ISLAND_CREATE_CREATED.send(player);
+        Message.ISLAND_CREATE_CREATED.send(player);
     }
 }

@@ -2,3 +2,5 @@ name: SkyblockCore
 version: '${project.version}'
 main: com.minecoremc.skyblockcore.SkyblockCore
 description: Skyblock Core for MineCoreMC
+depend:
+  - PluginAPI
