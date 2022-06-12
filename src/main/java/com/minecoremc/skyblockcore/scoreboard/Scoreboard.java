@@ -9,8 +9,6 @@ import org.bukkit.*;
 import org.bukkit.entity.Player;
 
 public class Scoreboard implements ScoreboardEntrySupplier {
-	
-	public SkyblockCore plugin;
 
 	public String getScoreboardTitle() {
 		return ChatColor.translateAlternateColorCodes('&', Config.SCOREBOARD_TITLE.getString());

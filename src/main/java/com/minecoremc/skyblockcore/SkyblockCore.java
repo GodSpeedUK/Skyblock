@@ -24,11 +24,12 @@ public final class SkyblockCore extends CustomPlugin {
 
     private IslandManager islandManager;
     private Economy econ = null;
+    private ScoreboardManager scoreboardManager;
 
     @Override
     public void enable() {
         instance = this;
-        if (!setupEconomy() ) {
+        if (!setupEconomy()) {
             Bukkit.getConsoleSender().sendMessage("[%s] - Disabled due to no Vault dependency found!");
             getServer().getPluginManager().disablePlugin(this);
             return;
@@ -39,8 +40,8 @@ public final class SkyblockCore extends CustomPlugin {
         Configuration.loadConfig(new YamlFile("messages.yml", this.getDataFolder().getAbsolutePath(), null, this), Message.values());
         this.islandManager = new IslandManager();
         registerCommands(new IslandCommand());
-
-        new ScoreboardManager(this, new Scoreboard());
+        this.scoreboardManager = new ScoreboardManager(new Scoreboard());
+        registerEvents(scoreboardManager);
     }
 
     @Override

@@ -11,11 +11,12 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 public final class PlayerScoreboard {
+
 	public static String[] TEAM_NAMES = new String[15];
 	private Scoreboard scoreboard;
 	private Objective objective;
 	private Player player;
-	private ScoreboardEntrySupplier supplier;
+	private final ScoreboardEntrySupplier supplier;
 
 	static {
 		for (int i = 0; i < 15; ++i) {
