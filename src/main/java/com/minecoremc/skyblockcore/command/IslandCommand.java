@@ -1,6 +1,6 @@
 package com.minecoremc.skyblockcore.command;
 
-import com.minecoremc.skyblockcore.command.subcommand.CreateCommand;
+import com.minecoremc.skyblockcore.command.subcommand.*;
 import me.dan.pluginapi.command.AbstractCommand;
 import me.dan.pluginapi.command.CommandContext;
 
@@ -12,7 +12,7 @@ public class IslandCommand extends AbstractCommand {
         super("island");
         setAliases(Collections.singletonList("is"));
         setUsage("/island");
-        addSubCommands(new CreateCommand());
+        addSubCommands(new CreateCommand(), new InviteCommand(), new MembersCommand(), new JoinCommand());
     }
 
     @Override

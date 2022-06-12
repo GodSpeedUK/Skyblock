@@ -26,7 +26,8 @@ public enum Config implements Configuration {
                             .material(Material.GOLD_BLOCK)
                             .value(3)
                             .build()
-            )));
+            ))),
+    ISLAND_MAX_MEMBERS("island_max_members", 5);
 
     @Getter
     private final String path;
