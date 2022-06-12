@@ -32,11 +32,11 @@ public final class SkyblockCore extends CustomPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
+        Serialization.register(ValuableBlock.class);
+        Serialization.register(ValuableBlockList.class);
         instance = this;
         Configuration.loadConfig(new YamlFile("config.yml", this.getDataFolder().getAbsolutePath(), null, this), Config.values());
         Configuration.loadConfig(new YamlFile("messages.yml", this.getDataFolder().getAbsolutePath(), null, this), Message.values());
-        Serialization.register(ValuableBlock.class);
-        Serialization.register(ValuableBlockList.class);
         this.islandManager = new IslandManager();
         registerCommands(new IslandCommand());
 

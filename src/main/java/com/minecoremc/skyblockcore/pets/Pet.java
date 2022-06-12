@@ -7,5 +7,5 @@ import org.bukkit.inventory.*;
 public class Pet {
 
     private ItemStack petBody;
-    private Item
+   // private Item
 }
