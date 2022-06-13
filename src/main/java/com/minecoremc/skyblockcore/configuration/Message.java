@@ -42,20 +42,12 @@ public enum Message implements Configuration, me.dan.pluginapi.message.Message {
 
     PET_NAME("pets.name", "{color}{petName} PET"),
 
-    PET_LEVELING("pets.leveling", Arrays.asList(
-            "{color}&lLeveling",
-            "{color} ● &lLevel: &f{petLevel}&7/&f5",
-            "{color} ● &lExp: &f{petExp}&7/&f100",
-            "{color} ● &8[{progressbar}&8]"
-    )),
-
     PET_MONEY_DESCRIPTION("pets.money.description", Arrays.asList(
             "",
             "{color}&lAbility",
             "&7This pet gives the chance to gain",
             "&7more money by selling crops",
-            "",
-            "{petLeveling}"
+            ""
     )),
 
     PET_LEVELED_UP("pets.leveled-up", "&a(!) Your &l{petName} &a has leveled up to level: &f{petLevel}"),

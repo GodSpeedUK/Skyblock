@@ -2,7 +2,9 @@ package com.minecoremc.skyblockcore.pets;
 
 import com.minecoremc.skyblockcore.configuration.*;
 import com.minecoremc.skyblockcore.user.*;
+import com.minecoremc.skyblockcore.utils.*;
 import lombok.*;
+import me.dan.pluginapi.item.Item;
 import me.dan.pluginapi.user.*;
 import net.milkbowl.vault.chat.*;
 import org.bukkit.*;
@@ -34,21 +36,19 @@ public class Pet {
 
     public ItemStack createPet(Player player) {
         ItemStack item = new ItemStack(petBody);
+
         ItemMeta meta = item.getItemMeta();
 
         UserLevelsData uld = User.get(player.getUniqueId()).getUserData(UserLevelsData.class);
         List<String> lore = new ArrayList<>();
 
-        String petLeveling = String.valueOf(Message.PET_LEVELING.getStringList());
-        String petLevel = String.valueOf(uld.getLevels().getOrDefault(petType, 1));
-        String petEXP = String.valueOf(uld.getXps().getOrDefault(petType, 0));
-
         lore.add(ChatColor.translateAlternateColorCodes('&', description.toString()));
-        lore.add(ChatColor.translateAlternateColorCodes('&', petLeveling.replace
-                ("{color}", ChatColor.getLastColors(color.name())).replace
-                ("{petLevel}", petLevel).replace
-                ("{petEXP}", petEXP).replace
-                ("{progressbar}", bar)));
+
+        lore.add(ChatUtil.chat(color + "&lLeveling"));
+        lore.add(ChatUtil.chat(color + " ● &lLevel: &f" + uld.getLevels().getOrDefault(petType, 1) + "&7/&f5"));
+        lore.add(ChatUtil.chat(color + " ● &lExp: &f" + uld.getXps().getOrDefault(petType, 0) + "&7/&f100"));
+        lore.add(ChatUtil.chat(color + " ● &8[" + bar + "&8]"));
+
 
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', Message.PET_NAME.getString())
                 .replace("{color}", ChatColor.getLastColors(color.name())).replace("{petName}", petType));

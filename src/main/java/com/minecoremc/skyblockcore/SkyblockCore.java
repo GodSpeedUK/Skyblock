@@ -6,6 +6,8 @@ import com.minecoremc.skyblockcore.command.IslandCommand;
 import com.minecoremc.skyblockcore.configuration.Config;
 import com.minecoremc.skyblockcore.configuration.Message;
 import com.minecoremc.skyblockcore.island.IslandManager;
+import com.minecoremc.skyblockcore.pets.*;
+import com.minecoremc.skyblockcore.pets.listeners.*;
 import com.minecoremc.skyblockcore.scoreboard.*;
 import lombok.Getter;
 import me.dan.pluginapi.configuration.Configuration;
@@ -41,7 +43,7 @@ public final class SkyblockCore extends CustomPlugin {
         this.islandManager = new IslandManager();
         registerCommands(new IslandCommand());
         this.scoreboardManager = new ScoreboardManager(new Scoreboard());
-        registerEvents(scoreboardManager);
+        registerEvents(scoreboardManager, new PetPlaceListener());
     }
 
     @Override

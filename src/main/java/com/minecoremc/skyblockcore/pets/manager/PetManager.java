@@ -53,7 +53,7 @@ public class PetManager {
             if (item == null) continue;
             if (!item.hasItemMeta()) continue;
             if (!item.getItemMeta().hasLore()) continue;
-            if (!item.getItemMeta().getDisplayName().endsWith(" Pet")) continue;
+            if (!item.getItemMeta().getDisplayName().equalsIgnoreCase(Message.PET_NAME.getString())) continue;
 
             ItemMeta itemMeta = item.getItemMeta();
             List<String> updatedLore = item.getItemMeta().getLore();
