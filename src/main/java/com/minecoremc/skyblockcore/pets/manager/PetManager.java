@@ -24,8 +24,8 @@ public class PetManager {
     public void increaseLVL(Player player, PetType type, int amount) {
         UserLevelsData target = User.get(player.getUniqueId()).getUserData(UserLevelsData.class);
         if (target.getLevels().containsKey(target)) {
-            target.getLevels().put(type, target.getLevels().get(type) + amount);
-        } else target.getLevels().put(type, amount);
+            target.getLevels().put(type.getName(), target.getLevels().get(type) + amount);
+        } else target.getLevels().put(type.getName(), amount);
 
         Message.PET_LEVELED_UP.send(player,
                 new Placeholder("{petLevel}", String.valueOf(target.getLevels().getOrDefault(type, 1))),
@@ -35,8 +35,8 @@ public class PetManager {
     public void increaseEXP(Player player, PetType type, int amount) {
         UserLevelsData target = User.get(player.getUniqueId()).getUserData(UserLevelsData.class);
         if (target.getLevels().containsKey(type)) {
-            target.getXps().put(type, target.getXps().get(type) + amount);
-        } else target.getXps().put(type, amount);
+            target.getXps().put(type.getName(), target.getXps().get(type) + amount);
+        } else target.getXps().put(type.getName(), amount);
 
         // notifications blocker code
 

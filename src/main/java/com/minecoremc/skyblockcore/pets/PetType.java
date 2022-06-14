@@ -1,6 +1,15 @@
 package com.minecoremc.skyblockcore.pets;
 
+import lombok.*;
+
+@Getter
 public enum PetType {
 
-    MONEY;
+    MONEY("MONEY");
+
+    private String name;
+
+    PetType(String name) {
+
+    }
 }

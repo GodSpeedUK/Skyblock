@@ -1,5 +1,6 @@
 package com.minecoremc.skyblockcore.pets.commands;
 
+import com.minecoremc.skyblockcore.pets.commands.subcommnds.*;
 import me.dan.pluginapi.command.*;
 
 import java.util.*;
@@ -11,7 +12,7 @@ public class PetCommand extends AbstractCommand {
         setAliases(Collections.singletonList("pet"));
         setUsage("/pets");
         setPermission("skyblock.pets.administrator");
-        addSubCommands();
+        addSubCommands(new GiveCommand());
     }
 
     @Override

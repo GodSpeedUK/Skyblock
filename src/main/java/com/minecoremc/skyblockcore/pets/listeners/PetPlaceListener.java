@@ -12,7 +12,7 @@ public class PetPlaceListener implements Listener {
 
         if (event.getBlock().getType() == Material.SKULL_ITEM) {
             event.setCancelled(true);
-            event.getPlayer().sendMessage(ChatUtil.chat("&c(!) You cannot place your Pet!"));
+            event.getPlayer().sendMessage(ChatUtil.chat("&c(!) You cannot place your Pets!"));
         }
     }
 }

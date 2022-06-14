@@ -4,9 +4,7 @@ import com.minecoremc.skyblockcore.configuration.*;
 import com.minecoremc.skyblockcore.user.*;
 import com.minecoremc.skyblockcore.utils.*;
 import lombok.*;
-import me.dan.pluginapi.item.Item;
 import me.dan.pluginapi.user.*;
-import net.milkbowl.vault.chat.*;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.*;
@@ -17,25 +15,27 @@ import java.util.*;
 @Getter @Setter
 public class Pet {
 
-    private ItemStack petBody;
-    private ChatColor color;
+    private ItemStack body;
 
+    private ChatColor color;
     private String name;
     private String bar;
-    private String petType;
+    private String type;
     private List<String> description;
 
-    public Pet(String petType, String name, ItemStack petBody, String bar, List<String> description) {
-        this.petType = petType;
+    public Pet(ChatColor color, ItemStack body, String type, String name, String bar,  List<String> description) {
+        this.color = color;
+        this.body = body;
+        this.type = type;
+
         this.name = name;
         this.bar = bar;
 
-        this.petBody = petBody;
         this.description = description;
     }
 
     public ItemStack createPet(Player player) {
-        ItemStack item = new ItemStack(petBody);
+        ItemStack item = new ItemStack(body);
 
         ItemMeta meta = item.getItemMeta();
 
@@ -45,13 +45,13 @@ public class Pet {
         lore.add(ChatColor.translateAlternateColorCodes('&', description.toString()));
 
         lore.add(ChatUtil.chat(color + "&lLeveling"));
-        lore.add(ChatUtil.chat(color + " ● &lLevel: &f" + uld.getLevels().getOrDefault(petType, 1) + "&7/&f5"));
-        lore.add(ChatUtil.chat(color + " ● &lExp: &f" + uld.getXps().getOrDefault(petType, 0) + "&7/&f100"));
+        lore.add(ChatUtil.chat(color + " ● &lLevel: &f" + uld.getLevels().getOrDefault(type, 1) + "&7/&f5"));
+        lore.add(ChatUtil.chat(color + " ● &lExp: &f" + uld.getXps().getOrDefault(type, 0) + "&7/&f100"));
         lore.add(ChatUtil.chat(color + " ● &8[" + bar + "&8]"));
 
 
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', Message.PET_NAME.getString())
-                .replace("{color}", ChatColor.getLastColors(color.name())).replace("{petName}", petType));
+                .replace("{color}", ChatColor.getLastColors(color.name())).replace("{petName}", type));
         meta.setLore(lore);
 
         return item;

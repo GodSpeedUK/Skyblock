@@ -7,6 +7,7 @@ import com.minecoremc.skyblockcore.configuration.Config;
 import com.minecoremc.skyblockcore.configuration.Message;
 import com.minecoremc.skyblockcore.island.IslandManager;
 import com.minecoremc.skyblockcore.pets.*;
+import com.minecoremc.skyblockcore.pets.commands.*;
 import com.minecoremc.skyblockcore.pets.listeners.*;
 import com.minecoremc.skyblockcore.scoreboard.*;
 import lombok.Getter;
@@ -41,7 +42,7 @@ public final class SkyblockCore extends CustomPlugin {
         Configuration.loadConfig(new YamlFile("config.yml", this.getDataFolder().getAbsolutePath(), null, this), Config.values());
         Configuration.loadConfig(new YamlFile("messages.yml", this.getDataFolder().getAbsolutePath(), null, this), Message.values());
         this.islandManager = new IslandManager();
-        registerCommands(new IslandCommand());
+        registerCommands(new IslandCommand(), new PetCommand());
         this.scoreboardManager = new ScoreboardManager(new Scoreboard());
         registerEvents(scoreboardManager, new PetPlaceListener());
     }
