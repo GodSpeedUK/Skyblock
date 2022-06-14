@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.dan.pluginapi.user.data.UserData;
 
+import javax.swing.text.*;
 import java.util.*;
 
 @Getter
@@ -14,6 +15,12 @@ public class SkyblockUserData extends UserData {
 
     private int island = 0;
 
+    private long souls = 0;
+    private long crystals = 0;
+
+    private long darkSouls = 0;
+    private long lightSouls = 0;
+    
     public SkyblockUserData(UUID uuid) {
         super(uuid);
     }
