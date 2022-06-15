@@ -66,10 +66,6 @@
             <id>jitpack</id>
             <url>https://jitpack.io</url>
         </repository>
-        <repository>
-            <id>skullcreator-repo</id>
-            <url>https://github.com/deanveloper/SkullCreator/raw/mvn-repo/</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -98,9 +94,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>dev.dbassett</groupId>
-            <artifactId>skullcreator</artifactId>
-            <version>3.0.1</version>
+            <groupId>com.github.mcdoeswhat</groupId>
+            <artifactId>skullapi-r</artifactId>
+            <version>1.1.10</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

@@ -40,19 +40,15 @@ public enum Message implements Configuration, me.dan.pluginapi.message.Message {
             "&8&l=========================="
     )),
 
-    PET_NAME("pets.name", "{color}{petName} PET"),
+    PET_NAME("pets.name", "{petName} PET"),
 
-    PET_MONEY_DESCRIPTION("pets.money.description", Arrays.asList(
-            "",
-            "{color}&lAbility",
-            "&7This pet gives the chance to gain",
-            "&7more money by selling crops",
-            ""
-    )),
+    PET_ENABLED("pets.enabled", "&a(!) You have activated your pet!"),
 
-    PET_LEVELED_UP("pets.leveled-up", "&a(!) Your &l{petName} &a has leveled up to level: &f{petLevel}"),
+    PET_DISABLED("pets.disabled", "&c(!) You have disabled your pet!"),
 
-    PET_GAINED_EXP("pets.gained-exp", "&a(!) Your &l{petName} &a has gained {amount} exp");
+    PET_LEVELED_UP("pets.leveled-up", "&a(!) Your &l{petName}&a has leveled up to level: &f{petLevel}"),
+
+    PET_GAINED_EXP("pets.gained-exp", "&a(!) Your &l{petName}&a has gained {amount} exp");
 
     @Getter
     private final String path;

@@ -12,8 +12,10 @@ public class UserLevelsData extends UserData {
     // This class deals with the majority of features that have levels related to them
 
 
-    private HashMap<String, Integer> levels;
-    private HashMap<String, Integer> xps;
+    private HashMap<PetType, Integer> levels;
+    private HashMap<PetType, Integer> xps;
+
+    private HashMap<UUID, PetType> petActive;
 
     private int maxBar = 100;
     private int totalBar = 40;
@@ -21,11 +23,12 @@ public class UserLevelsData extends UserData {
     public UserLevelsData(UUID uuid) {
         super(uuid);
 
+        this.petActive = new HashMap<>();
         this.levels = new HashMap<>();
         this.xps = new HashMap<>();
         for (PetType type : PetType.values()) {
-            levels.put(type.getName(), 1);
-            xps.put(type.getName(), 0);
+            levels.put(type, 1);
+            xps.put(type, 0);
         }
     }
 }

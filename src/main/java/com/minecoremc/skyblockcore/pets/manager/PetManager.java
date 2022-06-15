@@ -24,8 +24,8 @@ public class PetManager {
     public void increaseLVL(Player player, PetType type, int amount) {
         UserLevelsData target = User.get(player.getUniqueId()).getUserData(UserLevelsData.class);
         if (target.getLevels().containsKey(target)) {
-            target.getLevels().put(type.getName(), target.getLevels().get(type) + amount);
-        } else target.getLevels().put(type.getName(), amount);
+            target.getLevels().put(type, target.getLevels().get(type) + amount);
+        } else target.getLevels().put(type, amount);
 
         Message.PET_LEVELED_UP.send(player,
                 new Placeholder("{petLevel}", String.valueOf(target.getLevels().getOrDefault(type, 1))),
@@ -35,14 +35,19 @@ public class PetManager {
     public void increaseEXP(Player player, PetType type, int amount) {
         UserLevelsData target = User.get(player.getUniqueId()).getUserData(UserLevelsData.class);
         if (target.getLevels().containsKey(type)) {
-            target.getXps().put(type.getName(), target.getXps().get(type) + amount);
-        } else target.getXps().put(type.getName(), amount);
+            target.getXps().put(type, target.getXps().get(type) + amount);
+        } else target.getXps().put(type, amount);
 
         // notifications blocker code
 
         Message.PET_GAINED_EXP.send(player,
                 new Placeholder("{amount}", String.valueOf(amount)),
-                new Placeholder("{petName}",  Message.PET_NAME.getString()));
+                new Placeholder("{petName}", type.name()));
+    }
+
+    public void resetEXP(Player player, PetType type) {
+        UserLevelsData target = User.get(player.getUniqueId()).getUserData(UserLevelsData.class);
+        target.getXps().put(type, 0);
     }
 
     public void refreshPet(Player player, PetType type, ChatColor color) {
@@ -53,7 +58,7 @@ public class PetManager {
             if (item == null) continue;
             if (!item.hasItemMeta()) continue;
             if (!item.getItemMeta().hasLore()) continue;
-            if (!item.getItemMeta().getDisplayName().equalsIgnoreCase(Message.PET_NAME.getString())) continue;
+            if (!item.getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&',color + "&l" + Message.PET_NAME.getString().replace("{petName}", type.name())))) continue;
 
             ItemMeta itemMeta = item.getItemMeta();
             List<String> updatedLore = item.getItemMeta().getLore();
