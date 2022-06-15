@@ -5,6 +5,9 @@ import com.minecoremc.skyblockcore.block.ValuableBlockList;
 import com.minecoremc.skyblockcore.command.IslandCommand;
 import com.minecoremc.skyblockcore.configuration.Config;
 import com.minecoremc.skyblockcore.configuration.Message;
+import com.minecoremc.skyblockcore.harvesterhoe.*;
+import com.minecoremc.skyblockcore.harvesterhoe.command.*;
+import com.minecoremc.skyblockcore.harvesterhoe.listeners.*;
 import com.minecoremc.skyblockcore.island.IslandManager;
 import com.minecoremc.skyblockcore.pets.*;
 import com.minecoremc.skyblockcore.pets.commands.*;
@@ -27,9 +30,12 @@ public final class SkyblockCore extends CustomPlugin {
     private static SkyblockCore instance;
 
     private IslandManager islandManager;
-    private PetManager petManager;
     private Economy econ = null;
     private ScoreboardManager scoreboardManager;
+
+
+    private HarvesterHoeManager hoeManager;
+    private PetManager petManager;
 
     @Override
     public void enable() {
@@ -43,11 +49,14 @@ public final class SkyblockCore extends CustomPlugin {
         //Serialization.register(ValuableBlock.class);
         Configuration.loadConfig(new YamlFile("config.yml", this.getDataFolder().getAbsolutePath(), null, this), Config.values());
         Configuration.loadConfig(new YamlFile("messages.yml", this.getDataFolder().getAbsolutePath(), null, this), Message.values());
+        registerCommands(new IslandCommand(), new PetCommand(), new HarvesterHoeCommand());
         this.islandManager = new IslandManager();
-        registerCommands(new IslandCommand(), new PetCommand());
         this.scoreboardManager = new ScoreboardManager(new Scoreboard());
+        registerEvents(scoreboardManager, new PetPlaceListener(), new MoneyPetListener(), new HarvesterHoeListener(), new HoeAbilitiesListener());
+
         this.petManager = new PetManager();
-        registerEvents(scoreboardManager, new PetPlaceListener(), new MoneyPetListener());
+        this.hoeManager = new HarvesterHoeManager();
+        //
     }
 
     @Override

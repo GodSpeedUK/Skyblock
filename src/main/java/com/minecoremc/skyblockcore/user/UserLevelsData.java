@@ -6,7 +6,7 @@ import me.dan.pluginapi.user.data.*;
 
 import java.util.*;
 
-@Getter
+@Getter @Setter
 public class UserLevelsData extends UserData {
 
     // This class deals with the majority of features that have levels related to them
@@ -16,6 +16,13 @@ public class UserLevelsData extends UserData {
     private HashMap<PetType, Integer> xps;
 
     private HashMap<UUID, PetType> petActive;
+
+    private int SugarCaneMined = 0;
+    private int CarrotsMined = 0;
+    private int PotatoMined = 0;
+
+    private int hoeLevel = 0;
+    private int hoeExp = 0;
 
     private int maxBar = 100;
     private int totalBar = 40;

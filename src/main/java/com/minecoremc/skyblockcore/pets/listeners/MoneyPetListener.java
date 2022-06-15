@@ -7,6 +7,7 @@ import com.minecoremc.skyblockcore.pets.manager.*;
 import com.minecoremc.skyblockcore.user.*;
 import com.minecoremc.skyblockcore.utils.*;
 import me.dan.pluginapi.user.*;
+import net.brcdev.shopgui.event.*;
 import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.entity.*;
@@ -29,7 +30,8 @@ public class MoneyPetListener implements Listener {
 
         Pet moneyPet = new Pet(ChatColor.GREEN, "Bindfps", PetType.MONEY, Message.PET_NAME.getString(),
                 ProgressBar.getProgressBar(uld.getXps().get(PetType.MONEY), uld.getMaxBar(), uld.getTotalBar(), '|', ChatColor.GREEN, ChatColor.RED),
-                "more money when selling items");
+                "additional money while mining");
+
 
 
         if (!action.equals(Action.RIGHT_CLICK_AIR) && !action.equals(Action.RIGHT_CLICK_BLOCK)) return;
@@ -72,16 +74,20 @@ public class MoneyPetListener implements Listener {
                         petManager.increaseLVL(player, PetType.MONEY, 1);
                     }
                     if (uld.getLevels().get(PetType.MONEY) == 5) return;
-                    System.out.println(1111);
                     petManager.increaseEXP(player, PetType.MONEY, PetType.MONEY.getXpFor(block.getType()));
-                    System.out.println(222);
                     petManager.refreshPet(player, PetType.MONEY, ChatColor.GREEN);
                     player.updateInventory();
-                    System.out.println(3333);
+
+
+                }
+
+                if (random <= 10) {
+                    SkyblockCore.getInstance().getEcon().depositPlayer(player, 100 * uld.getHoeLevel());
                 }
                 break;
             default:
                 break;
         }
     }
+
 }

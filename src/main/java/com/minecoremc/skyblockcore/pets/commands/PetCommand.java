@@ -10,7 +10,7 @@ public class PetCommand extends AbstractCommand {
     public PetCommand() {
         super("pets");
         setAliases(Collections.singletonList("pet"));
-        setUsage("/pets");
+        setUsage("/pets give (player) (type)");
         setPermission("skyblock.pets.administrator");
         addSubCommands(new GiveCommand());
     }
