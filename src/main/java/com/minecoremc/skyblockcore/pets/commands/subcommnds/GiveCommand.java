@@ -32,19 +32,16 @@ public class GiveCommand extends AbstractSubCommand {
                 ProgressBar.getProgressBar(uld.getXps().get(PetType.MONEY), uld.getMaxBar(), uld.getTotalBar(), '|', ChatColor.GREEN, ChatColor.RED),
                 "more money when selling items");
 
-        System.out.println(2);
         if (!(args.length > 2)) return;
 
         Player p = Bukkit.getPlayer(args[1]);
 
-        System.out.println(3);
         if (p == null) {
             Message.PLAYER_NOT_FOUND.send(player, new Placeholder("{player}", args[1]));
             return;
         }
 
         if(args[2].equalsIgnoreCase("MONEY")) {
-            System.out.println(5);
             player.getInventory().addItem(moneyPet.createPet(player));
         }
 

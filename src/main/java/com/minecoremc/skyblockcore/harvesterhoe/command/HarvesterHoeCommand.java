@@ -9,10 +9,10 @@ public class HarvesterHoeCommand extends AbstractCommand {
 
     public HarvesterHoeCommand() {
         super("harvesterHoe");
-        setAliases(Collections.singletonList("hhoe"));
-        setUsage("/harvesterHoe give (player)");
+        setAliases(Collections.singletonList(""));
+        setUsage("/harvesterhoe give (player)");
         setPermission("skyblock.harvesterhoe.admin");
-        addSubCommands(new GiveCommand());
+        addSubCommands(new GiveHoeCommand());
     }
 
     @Override

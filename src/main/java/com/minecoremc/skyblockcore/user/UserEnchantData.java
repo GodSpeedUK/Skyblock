@@ -5,10 +5,10 @@ import me.dan.pluginapi.user.data.*;
 
 import java.util.*;
 
-@Getter
+@Getter @Setter
 public class UserEnchantData extends UserData {
 
-    private int merchantLVL = 0;
+    private int merchantLVL = 1;
 
     public UserEnchantData(UUID uuid) {
         super(uuid);

@@ -11,10 +11,10 @@ import org.bukkit.entity.*;
 
 import java.util.*;
 
-public class GiveCommand extends AbstractSubCommand {
+public class GiveHoeCommand extends AbstractSubCommand {
 
-    public GiveCommand() {
-        super("/harvesterHoe give (player)", Collections.singletonList("hhoe"));
+    public GiveHoeCommand() {
+        super("/harvesterHoe give (player)", Collections.singletonList("give"));
         setPermission("skyblock.harvesterhoe.admin");
         setPlayer(true);
     }
@@ -24,17 +24,13 @@ public class GiveCommand extends AbstractSubCommand {
         Player player = (Player) commandContext.getCommandSender();
         String[] args = commandContext.getArgs();
 
+        Player p = Bukkit.getPlayer(args[1]);
 
-        if (args.length == 1) {
-
-            Player p = Bukkit.getPlayer(args[1]);
-
-            if (p == null) {
-                Message.PLAYER_NOT_FOUND.send(player, new Placeholder("{player}", args[1]));
-                return;
-            }
-
-            player.getInventory().addItem(SkyblockCore.getInstance().getHoeManager().makeHoe(player));
+        if (p == null) {
+            Message.PLAYER_NOT_FOUND.send(player, new Placeholder("{player}", args[1]));
+            return;
         }
+
+        player.getInventory().addItem(SkyblockCore.getInstance().getHoeManager().makeHoe(player));
     }
 }

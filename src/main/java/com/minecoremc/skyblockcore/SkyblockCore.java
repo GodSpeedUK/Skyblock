@@ -3,6 +3,7 @@ package com.minecoremc.skyblockcore;
 import com.minecoremc.skyblockcore.block.ValuableBlock;
 import com.minecoremc.skyblockcore.block.ValuableBlockList;
 import com.minecoremc.skyblockcore.command.IslandCommand;
+import com.minecoremc.skyblockcore.command.currency.*;
 import com.minecoremc.skyblockcore.configuration.Config;
 import com.minecoremc.skyblockcore.configuration.Message;
 import com.minecoremc.skyblockcore.harvesterhoe.*;
@@ -49,7 +50,7 @@ public final class SkyblockCore extends CustomPlugin {
         //Serialization.register(ValuableBlock.class);
         Configuration.loadConfig(new YamlFile("config.yml", this.getDataFolder().getAbsolutePath(), null, this), Config.values());
         Configuration.loadConfig(new YamlFile("messages.yml", this.getDataFolder().getAbsolutePath(), null, this), Message.values());
-        registerCommands(new IslandCommand(), new PetCommand(), new HarvesterHoeCommand());
+        registerCommands(new IslandCommand(), new PetCommand(), new HarvesterHoeCommand(), new CurrencyCommand());
         this.islandManager = new IslandManager();
         this.scoreboardManager = new ScoreboardManager(new Scoreboard());
         registerEvents(scoreboardManager, new PetPlaceListener(), new MoneyPetListener(), new HarvesterHoeListener(), new HoeAbilitiesListener());

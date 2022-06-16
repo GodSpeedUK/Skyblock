@@ -40,6 +40,8 @@ public enum Message implements Configuration, me.dan.pluginapi.message.Message {
             "&8&l=========================="
     )),
 
+    CURRENCY_TO_USER("currency.deposited", "&a(!) {amount}{type} &ahas been added to {player} balance"),
+
     PET_NAME("pets.name", "{petName} PET"),
 
     PET_ENABLED("pets.enabled", "&a(!) You have activated your pet!"),

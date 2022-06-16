@@ -2,6 +2,8 @@ package com.minecoremc.skyblockcore.harvesterhoe;
 
 import com.minecoremc.skyblockcore.user.*;
 import com.minecoremc.skyblockcore.utils.*;
+import me.dan.pluginapi.item.Item;
+import me.dan.pluginapi.message.*;
 import me.dan.pluginapi.user.*;
 import org.bukkit.*;
 import org.bukkit.entity.*;
@@ -26,13 +28,12 @@ public class HarvesterHoeManager {
         meta.setDisplayName(ChatUtil.chat(harvesterHoe.getName()));
         List<String> lore = new ArrayList<>();
 
-        lore.add(ChatUtil.chat(""));
         lore.add(ChatUtil.chat("&7Using a harvester hoe, gives you a major"));
         lore.add(ChatUtil.chat("&7advantage when harvesting crops!"));
         lore.add(ChatUtil.chat(""));
-        lore.add(ChatUtil.chat("&3&lLeveling"));
-        lore.add(ChatUtil.chat("&b ● &3Level: &f" + uld.getHoeLevel() + "&7/&f5"));
-        lore.add(ChatUtil.chat("&b ● &3Exp: &f" + uld.getHoeExp() + "&7/&f75"));
+        lore.add(ChatUtil.chat("&e&lLeveling"));
+        lore.add(ChatUtil.chat("&e ● &bLevel: &f" + uld.getHoeLevel() + "&7/&f5"));
+        lore.add(ChatUtil.chat("&e ● &bExp: &f" + uld.getHoeExp() + "&7/&f75"));
         lore.add(ChatUtil.chat(""));
         lore.add(ChatUtil.chat("&b&lAbilities"));
 
@@ -48,20 +49,22 @@ public class HarvesterHoeManager {
         Inventory inventory = Bukkit.createInventory(null, 27, ChatUtil.chat("&7Harvester Hoe"));
 
         for (int i = 0; i < inventory.getSize(); i++) {
-            inventory.setItem(i, new ItemStack(Material.STAINED_GLASS_PANE, (short) 3));
+            inventory.setItem(i, new ItemStack(Material.STAINED_GLASS_PANE,  1, (short) 3));
         }
 
-        ItemStack stats = Builder.nameItem(Material.BOOK, "&b&l(!) &3&lStatistics", (short) 1, 1,
+        ItemStack stats = Item.builder().material("BOOK").name("&b&lStatistics").lore(
                 Arrays.asList("&7Here you can view your hoe's", "&7statistics",
-                        "", "&b&lCrops Harvested",
-                        "&3 ● &bSugar Cane &f" + uld.getSugarCaneMined(),
-                        "&3 ● &bCarrots &f" + uld.getCarrotsMined(),
-                        "&3 ● &bPotatoes &f" + uld.getPotatoMined()));
+                        "", "&e&lCrops Harvested",
+                        "&e ● &bSugar Cane &f" + uld.getSugarCaneMined(),
+                        "&e ● &bCarrots &f" + uld.getCarrotsMined(),
+                        "&e ● &bPotatoes &f" + uld.getPotatoMined())).build().toItemStack();
 
-        ItemStack abilities = Builder.nameItem(Material.FEATHER, "&b&l(!) &3&lAbilities", (short) 1, 1,
-                Arrays.asList("&7(( Click to purchase abilities."));
+        ItemStack abilities = Item.builder().material("DIAMOND_HOE").name("&b&lAbilities").lore(Arrays.asList(
+                "&7(( Click to purchase abilities. ))")).build().toItemStack();
 
-        ItemStack settings = Builder.nameItem(Material.COMPASS, "&b&l(!) &3&lSettings &7(Soon...)", (short) 1, 1,
+        ItemStack settings = Item.builder().material("COMPASS").name("&b&lSettings &7(Soon...)").lore(Arrays.asList()).build().toItemStack();
+
+        Builder.nameItem(Material.NAME_TAG, "&e&l(!) &b&lSettings &7(Soon...)", (short) 1, 1,
                 Arrays.asList("&7(( Click to customise your settings ))"));
 
 
@@ -78,15 +81,16 @@ public class HarvesterHoeManager {
         Inventory inventory = Bukkit.createInventory(null, 27, ChatUtil.chat("&7Hoe Abilities"));
 
         for (int i = 0; i < inventory.getSize(); i++) {
-            inventory.setItem(i, new ItemStack(Material.STAINED_GLASS_PANE, (short) 3));
+            inventory.setItem(i, new ItemStack(Material.STAINED_GLASS_PANE,  1, (short) 3));
         }
 
-        ItemStack back = Builder.nameItem(Material.BARRIER, "&c&lBACK", (short) 1, 1,
-                Arrays.asList());
+        ItemStack back = Item.builder().material("BARRIER").name("&c&lBACK").lore(Arrays.asList()).build().toItemStack();
 
-        ItemStack merchant = Builder.nameItem(Material.SEEDS, "&a&lMerchant", (short) 1, 1,
-                Arrays.asList("&7&oThe &f&nMerchant&7&o enchant allows you to", "&7double the amount of crops you receive while farming", "",
-                        "&3● &bLevel: &f" + ued.getMerchantLVL() + "&7/&f3", "&3● &bPrice: &b"+ 4000 + 4000 * ued.getMerchantLVL() / 40 +" crystals", "", "&7&o(( &f&oLeft Click &7&oto purchase enchant! ))"));
+        ItemStack merchant = Item.builder().material("SEEDS").name("&a&lMerchant").lore(Arrays.asList(
+                "&7(( Chance to double crops while harvesting )) ", "", "&e● &bPrice: &f" + 2250 * ued.getMerchantLVL(),
+                "&e● &bLevel: &f" + ued.getMerchantLVL(), "&e● &bMax Level: 5", "",
+                "&7&o(( &f&oLeft-Click &7&oto purchase enchant! ))")).build().toItemStack();
+
 
 
         inventory.setItem(18, back);
@@ -96,4 +100,10 @@ public class HarvesterHoeManager {
 
         return inventory;
     }
+
+    /*
+    Builder.nameItem(Material.POTATO_ITEM, "&a&lMerchant", (short) 1, 1,
+                Arrays.asList("&7&oThe &f&nMerchant&7&o enchant allows you to", "&7double the amount of crops you receive while farming", "",
+                        "&e● &bLevel: &f" + ued.getMerchantLVL() + "&7/&f3", "&e● &bPrice: &f"+ 2250 * ued.getMerchantLVL() +"&b crystals", "", "&7&o(( &f&oLeft Click &7&oto purchase enchant! ))"));
+     */
 }

@@ -10,9 +10,24 @@ import org.bukkit.entity.*;
 import org.bukkit.event.*;
 import org.bukkit.event.block.*;
 import org.bukkit.event.inventory.*;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.*;
 
 public class HarvesterHoeListener implements Listener {
+
+    @EventHandler
+    public void onInteract(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        Action action = event.getAction();
+        HarvesterHoeManager hoeManager = SkyblockCore.getInstance().getHoeManager();
+
+        if (!action.equals(Action.RIGHT_CLICK_BLOCK) && !action.equals(Action.RIGHT_CLICK_AIR)) return;
+        if (!player.getInventory().getItemInHand().getItemMeta().getDisplayName().equals(hoeManager.makeHoe(player).getItemMeta().getDisplayName())) return;
+
+        if (!player.isSneaking()) return;
+
+        player.openInventory(hoeManager.mainGUI(player));
+    }
 
     @EventHandler
     public void onBreak(BlockBreakEvent event) {
@@ -26,11 +41,13 @@ public class HarvesterHoeListener implements Listener {
 
         switch (block.getType()) {
             case SUGAR_CANE_BLOCK:
-            case CARROT:
-            case POTATO:
-                uld.setCarrotsMined(uld.getCarrotsMined() + 1);
-                uld.setPotatoMined(uld.getPotatoMined() + 1);
                 uld.setSugarCaneMined(uld.getSugarCaneMined() + 1);
+                break;
+            case CARROT:
+                uld.setCarrotsMined(uld.getCarrotsMined() + 1);
+                break;
+            case POTATO:
+                uld.setPotatoMined(uld.getPotatoMined() + 1);
                 break;
             default:
                 break;
