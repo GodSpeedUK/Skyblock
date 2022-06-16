@@ -4,6 +4,7 @@ import com.minecoremc.skyblockcore.*;
 import com.minecoremc.skyblockcore.harvesterhoe.*;
 import com.minecoremc.skyblockcore.user.*;
 import com.minecoremc.skyblockcore.utils.*;
+import me.dan.pluginapi.nbt.*;
 import me.dan.pluginapi.user.*;
 import org.bukkit.*;
 import org.bukkit.entity.*;
@@ -42,14 +43,13 @@ public class HoeAbilitiesListener implements Listener{
             if (item.getItemMeta().getLore().contains(ChatUtil.chat("&e ● &a&l" + "Merchant: &f" + ued.getMerchantLVL() + "&7/&f5"))) {
                 if (!(sud.getCrystals() >= 2250 * ued.getMerchantLVL())) return;
                 if (ued.getMerchantLVL() == 5) return;
-
                 sud.setCrystals(sud.getCrystals() - 2250 * ued.getMerchantLVL());
                 ued.setMerchantLVL(ued.getMerchantLVL() + 1);
 
-                player.updateInventory();
+
                 return;
             }
-            if (!(sud.getCrystals() >= 2250 * ued.getMerchantLVL())) return;
+            if (!(sud.getCrystals() >= 2250L * ued.getMerchantLVL())) return;
             if (ued.getMerchantLVL() == 5) return;
 
             ItemMeta meta = item.getItemMeta();
@@ -59,7 +59,7 @@ public class HoeAbilitiesListener implements Listener{
 
             meta.setLore(updatedLore);
             item.setItemMeta(meta);
-            player.updateInventory();
+
             return;
         }
     }

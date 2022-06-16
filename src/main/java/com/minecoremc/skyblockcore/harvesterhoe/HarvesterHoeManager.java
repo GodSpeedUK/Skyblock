@@ -3,7 +3,9 @@ package com.minecoremc.skyblockcore.harvesterhoe;
 import com.minecoremc.skyblockcore.user.*;
 import com.minecoremc.skyblockcore.utils.*;
 import me.dan.pluginapi.item.Item;
+import me.dan.pluginapi.menu.*;
 import me.dan.pluginapi.message.*;
+import me.dan.pluginapi.nbt.*;
 import me.dan.pluginapi.user.*;
 import org.bukkit.*;
 import org.bukkit.entity.*;
@@ -23,22 +25,10 @@ public class HarvesterHoeManager {
         HarvesterHoe harvesterHoe = new HarvesterHoe();
 
 
-        ItemStack itemStack = new ItemStack(harvesterHoe.getMaterial());
-        ItemMeta meta = itemStack.getItemMeta();
-        meta.setDisplayName(ChatUtil.chat(harvesterHoe.getName()));
-        List<String> lore = new ArrayList<>();
-
-        lore.add(ChatUtil.chat("&7Using a harvester hoe, gives you a major"));
-        lore.add(ChatUtil.chat("&7advantage when harvesting crops!"));
-        lore.add(ChatUtil.chat(""));
-        lore.add(ChatUtil.chat("&e&lLeveling"));
-        lore.add(ChatUtil.chat("&e ● &bLevel: &f" + uld.getHoeLevel() + "&7/&f5"));
-        lore.add(ChatUtil.chat("&e ● &bExp: &f" + uld.getHoeExp() + "&7/&f75"));
-        lore.add(ChatUtil.chat(""));
-        lore.add(ChatUtil.chat("&b&lAbilities"));
-
-        meta.setLore(lore);
-        itemStack.setItemMeta(meta);
+        ItemStack itemStack = Item.builder().material(harvesterHoe.getMaterial().toString()).name(harvesterHoe.getName())
+                .lore(Arrays.asList("&7Using a harvester hoe, gives you a major", "&7advantage when harvesting crops!",
+                        "", "&e&lLeveling", "&e ● &bLevel: &f" + uld.getHoeLevel() + "&7/&f5", "&e ● &bExp: &f" + uld.getHoeExp() + "&7/&f75",
+                        "", "&b&lAbilities")).build().toItemStack();
 
         return itemStack;
     }
