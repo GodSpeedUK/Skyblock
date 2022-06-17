@@ -21,7 +21,7 @@ public class HoeMenuPerform extends MenuPerform {
         }
         Player player = user.getPlayer();
 
-        if (menuItem.getItem().equals(Material.DIAMOND_HOE)) {
+        if (menuItem.getItem().getMaterial().equals(Material.DIAMOND_HOE)) {
             SkyblockCore.getInstance().getHoeManager().abilitiesGUI(player);
         }
 
