@@ -27,11 +27,12 @@ public class HoeAbilitiesListener implements Listener{
         SkyblockUserData sud = User.get(player.getUniqueId()).getUserData(SkyblockUserData.class);
         UserEnchantData ued = User.get(player.getUniqueId()).getUserData(UserEnchantData.class);
 
-        if(!(open.getHolder() == hoeManager.abilitiesGUI(player).getHolder())) return;
+        if (open == null) return;
+        if(open.getHolder() != hoeManager.abilitiesGUI(player).getHolder()) return;
         event.setCancelled(true);
 
-        if (event.getSlot() == 18) {
-            hoeManager.mainGUI(player);
+        if (event.getCurrentItem().getType() == Material.BARRIER) {
+            player.openInventory(hoeManager.mainGUI(player));
         }
 
         if (event.getCurrentItem().getType() == Material.SEEDS) {

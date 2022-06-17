@@ -86,9 +86,9 @@ public class HarvesterHoeManager {
             inventory.setItem(i, new ItemStack(Material.STAINED_GLASS_PANE,  1, (short) 3));
         }
 
-        ItemStack back = Builder.nameItem(Material.BARRIER, "&c&lBACK", (short) 1, 1, Arrays.asList(""));
+        ItemStack back = Builder.nameItem(Material.BARRIER, "&c&lBACK", (short) 1, 1, Arrays.asList());
 
-        ItemStack merchant = Builder.nameItem(Material.SEEDS, "&a&lMerchant", (short) 1, 1, Arrays.asList
+        ItemStack merchant = Builder.nameItem(new ItemStack(Material.SEEDS), "&a&lMerchant", (short) 1, 1, Arrays.asList
                 ("&7(( Chance to double crops while harvesting )) ", "", "&e● &bPrice: &f" + 2250 * ued.getMerchantLVL(),
                         "&e● &bLevel: &f" + ued.getMerchantLVL(), "&e● &bMax Level: 5", "",
                         "&7&o(( &f&oLeft-Click &7&oto purchase enchant! ))"));
