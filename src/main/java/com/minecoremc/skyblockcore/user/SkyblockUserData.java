@@ -20,6 +20,8 @@ public class SkyblockUserData extends UserData {
 
     private long darkSouls = 0;
     private long lightSouls = 0;
+
+    private List<String> canfly = new ArrayList<>();
     
     public SkyblockUserData(UUID uuid) {
         super(uuid);

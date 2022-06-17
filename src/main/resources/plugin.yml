@@ -4,3 +4,4 @@ main: com.minecoremc.skyblockcore.SkyblockCore
 description: Skyblock Core for MineCoreMC
 depend:
   - PluginAPI
+  - LuckPerms

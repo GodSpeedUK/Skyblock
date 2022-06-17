@@ -28,7 +28,8 @@ public class Scoreboard implements ScoreboardEntrySupplier {
 			lines.add(ChatColor.translateAlternateColorCodes('&',
 					scoreboard.replace("{player}", player.getName())
 							.replace("{souls}", souls)
-							.replace("{crystals}", crystals)));
+							.replace("{crystals}", crystals)
+							.replace("{money}", String.valueOf(SkyblockCore.getInstance().getEcon().getBalance(player)))));
 		}
 
 		return lines;

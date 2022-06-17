@@ -2,7 +2,7 @@ package com.minecoremc.skyblockcore;
 
 import com.minecoremc.skyblockcore.block.ValuableBlock;
 import com.minecoremc.skyblockcore.block.ValuableBlockList;
-import com.minecoremc.skyblockcore.command.IslandCommand;
+import com.minecoremc.skyblockcore.command.*;
 import com.minecoremc.skyblockcore.command.currency.*;
 import com.minecoremc.skyblockcore.configuration.Config;
 import com.minecoremc.skyblockcore.configuration.Message;
@@ -10,6 +10,7 @@ import com.minecoremc.skyblockcore.harvesterhoe.*;
 import com.minecoremc.skyblockcore.harvesterhoe.command.*;
 import com.minecoremc.skyblockcore.harvesterhoe.listeners.*;
 import com.minecoremc.skyblockcore.island.IslandManager;
+import com.minecoremc.skyblockcore.menus.*;
 import com.minecoremc.skyblockcore.pets.*;
 import com.minecoremc.skyblockcore.pets.commands.*;
 import com.minecoremc.skyblockcore.pets.listeners.*;
@@ -51,7 +52,7 @@ public final class SkyblockCore extends CustomPlugin {
         //Serialization.register(ValuableBlock.class);
         Configuration.loadConfig(new YamlFile("config.yml", this.getDataFolder().getAbsolutePath(), null, this), Config.values());
         Configuration.loadConfig(new YamlFile("messages.yml", this.getDataFolder().getAbsolutePath(), null, this), Message.values());
-        registerCommands(new IslandCommand(), new PetCommand(), new HarvesterHoeCommand(), new CurrencyCommand());
+        registerCommands(new IslandCommand(), new PetCommand(), new HarvesterHoeCommand(), new CurrencyCommand(), new CrystalShopCommand());
         this.islandManager = new IslandManager();
         this.scoreboardManager = new ScoreboardManager(new Scoreboard());
         registerEvents(scoreboardManager, new PetPlaceListener(), new MoneyPetListener(), new HarvesterHoeListener(), new HoeAbilitiesListener());
@@ -63,6 +64,7 @@ public final class SkyblockCore extends CustomPlugin {
 
         PluginAPI.getInstance().getMenuManager().registerPerformMethod(Config.HARVESTER_HOE_MAIN_GUI.getMenu(), new HoeMenuPerform());
         PluginAPI.getInstance().getMenuManager().registerPerformMethod(Config.HARVESTER_HOE_ENCHANTS_GUI.getMenu(), new EnchantMenuPerform());
+        PluginAPI.getInstance().getMenuManager().registerPerformMethod(Config.CRYSTAL_SHOP_GUI.getMenu(), new cShopMenuPerform());
     }
 
     @Override

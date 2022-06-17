@@ -61,13 +61,9 @@ public class HarvesterHoeManager {
 
         int price = 2250 * ued.getMerchantLVL();
 
-        int sum = price + price / 20 * 2;
-
-        int finalPrice = price + sum;
-
         PluginAPI.getInstance().getMenuManager().setMenu(User.get(player.getUniqueId()), Config.HARVESTER_HOE_ENCHANTS_GUI.getMenu(),
                 new Placeholder("{level}", String.valueOf(ued.getMerchantLVL())),
-                new Placeholder("{price}", String.valueOf(finalPrice)));
+                new Placeholder("{price}", String.valueOf(price)));
     }
 
     /*
