@@ -54,20 +54,18 @@ public class HarvesterHoeManager {
             inventory.setItem(i, new ItemStack(Material.STAINED_GLASS_PANE,  1, (short) 3));
         }
 
-        ItemStack stats = Item.builder().material("BOOK").name("&b&lStatistics").lore(
+        ItemStack stats = Item.builder().material("BOOK").amount(1).name("&b&lStatistics").lore(
                 Arrays.asList("&7Here you can view your hoe's", "&7statistics",
                         "", "&e&lCrops Harvested",
                         "&e ● &bSugar Cane &f" + uld.getSugarCaneMined(),
                         "&e ● &bCarrots &f" + uld.getCarrotsMined(),
                         "&e ● &bPotatoes &f" + uld.getPotatoMined())).build().toItemStack();
 
-        ItemStack abilities = Item.builder().material("DIAMOND_HOE").name("&b&lAbilities").lore(Arrays.asList(
+        ItemStack abilities = Item.builder().material("DIAMOND_HOE").amount(1).name("&b&lAbilities").lore(Arrays.asList(
                 "&7(( Click to purchase abilities. ))")).build().toItemStack();
 
-        ItemStack settings = Item.builder().material("COMPASS").name("&b&lSettings &7(Soon...)").lore(Arrays.asList()).build().toItemStack();
+        ItemStack settings = Item.builder().material("COMPASS").amount(1).name("&b&lSettings &7(Soon...)").lore(Arrays.asList()).build().toItemStack();
 
-        Builder.nameItem(Material.NAME_TAG, "&e&l(!) &b&lSettings &7(Soon...)", (short) 1, 1,
-                Arrays.asList("&7(( Click to customise your settings ))"));
 
 
         inventory.setItem(10, stats);
@@ -86,12 +84,12 @@ public class HarvesterHoeManager {
             inventory.setItem(i, new ItemStack(Material.STAINED_GLASS_PANE,  1, (short) 3));
         }
 
-        ItemStack back = Builder.nameItem(Material.BARRIER, "&c&lBACK", (short) 1, 1, Arrays.asList());
+        ItemStack back = Item.builder().material("BARRIER").name("&c&lBack").lore(Arrays.asList()).build().toItemStack();
 
-        ItemStack merchant = Builder.nameItem(new ItemStack(Material.SEEDS), "&a&lMerchant", (short) 1, 1, Arrays.asList
+        ItemStack merchant = Item.builder().name("&a&lMerchant").amount(1).material("SEEDS").lore(Arrays.asList
                 ("&7(( Chance to double crops while harvesting )) ", "", "&e● &bPrice: &f" + 2250 * ued.getMerchantLVL(),
                         "&e● &bLevel: &f" + ued.getMerchantLVL(), "&e● &bMax Level: 5", "",
-                        "&7&o(( &f&oLeft-Click &7&oto purchase enchant! ))"));
+                        "&7&o(( &f&oLeft-Click &7&oto purchase enchant! ))")).build().toItemStack();
 
 
         inventory.setItem(18, back);
