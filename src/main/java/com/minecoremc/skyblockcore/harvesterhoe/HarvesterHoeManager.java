@@ -1,7 +1,9 @@
 package com.minecoremc.skyblockcore.harvesterhoe;
 
+import com.minecoremc.skyblockcore.configuration.*;
 import com.minecoremc.skyblockcore.user.*;
 import com.minecoremc.skyblockcore.utils.*;
+import me.dan.pluginapi.*;
 import me.dan.pluginapi.item.Item;
 import me.dan.pluginapi.menu.*;
 import me.dan.pluginapi.message.*;
@@ -45,59 +47,27 @@ public class HarvesterHoeManager {
         return itemStack;
     }
 
-    public Inventory mainGUI(Player player) {
+    public void mainGUI(Player player) {
         UserLevelsData uld = User.get(player.getUniqueId()).getUserData(UserLevelsData.class);
 
-        Inventory inventory = Bukkit.createInventory(null, 27, ChatUtil.chat("&7Harvester Hoe"));
-
-        for (int i = 0; i < inventory.getSize(); i++) {
-            inventory.setItem(i, new ItemStack(Material.STAINED_GLASS_PANE,  1, (short) 3));
-        }
-
-        ItemStack stats = Item.builder().material("BOOK").amount(1).name("&b&lStatistics").lore(
-                Arrays.asList("&7Here you can view your hoe's", "&7statistics",
-                        "", "&e&lCrops Harvested",
-                        "&e ● &bSugar Cane &f" + uld.getSugarCaneMined(),
-                        "&e ● &bCarrots &f" + uld.getCarrotsMined(),
-                        "&e ● &bPotatoes &f" + uld.getPotatoMined())).build().toItemStack();
-
-        ItemStack abilities = Item.builder().material("DIAMOND_HOE").amount(1).name("&b&lAbilities").lore(Arrays.asList(
-                "&7(( Click to purchase abilities. ))")).build().toItemStack();
-
-        ItemStack settings = Item.builder().material("COMPASS").amount(1).name("&b&lSettings &7(Soon...)").lore(Arrays.asList()).build().toItemStack();
-
-
-
-        inventory.setItem(10, stats);
-        inventory.setItem(13, abilities);
-        inventory.setItem(16, settings);
-
-        return inventory;
+        PluginAPI.getInstance().getMenuManager().setMenu(User.get(player.getUniqueId()), Config.HARVESTER_HOE_MAIN_GUI.getMenu(),
+                new Placeholder("{sugarCane}", String.valueOf(uld.getSugarCaneMined())),
+                new Placeholder("{carrots}", String.valueOf(uld.getCarrotsMined())),
+                new Placeholder("{potatoes}", String.valueOf(uld.getPotatoMined())));
     }
 
-    public Inventory abilitiesGUI(Player player) {
+    public void abilitiesGUI(Player player) {
         UserEnchantData ued = User.get(player.getUniqueId()).getUserData(UserEnchantData.class);
 
-        Inventory inventory = Bukkit.createInventory(null, 27, ChatUtil.chat("&7Hoe Abilities"));
+        int price = 2250 * ued.getMerchantLVL();
 
-        for (int i = 0; i < inventory.getSize(); i++) {
-            inventory.setItem(i, new ItemStack(Material.STAINED_GLASS_PANE,  1, (short) 3));
-        }
+        int sum = price + price / 20 * 2;
 
-        ItemStack back = Item.builder().material("BARRIER").name("&c&lBack").lore(Arrays.asList()).build().toItemStack();
+        int finalPrice = price + sum;
 
-        ItemStack merchant = Item.builder().name("&a&lMerchant").amount(1).material("SEEDS").lore(Arrays.asList
-                ("&7(( Chance to double crops while harvesting )) ", "", "&e● &bPrice: &f" + 2250 * ued.getMerchantLVL(),
-                        "&e● &bLevel: &f" + ued.getMerchantLVL(), "&e● &bMax Level: 5", "",
-                        "&7&o(( &f&oLeft-Click &7&oto purchase enchant! ))")).build().toItemStack();
-
-
-        inventory.setItem(18, back);
-
-        inventory.setItem(13, merchant);
-
-
-        return inventory;
+        PluginAPI.getInstance().getMenuManager().setMenu(User.get(player.getUniqueId()), Config.HARVESTER_HOE_ENCHANTS_GUI.getMenu(),
+                new Placeholder("{level}", String.valueOf(ued.getMerchantLVL())),
+                new Placeholder("{price}", String.valueOf(finalPrice)));
     }
 
     /*

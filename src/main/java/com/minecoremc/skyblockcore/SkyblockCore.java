@@ -16,6 +16,7 @@ import com.minecoremc.skyblockcore.pets.listeners.*;
 import com.minecoremc.skyblockcore.pets.manager.*;
 import com.minecoremc.skyblockcore.scoreboard.*;
 import lombok.Getter;
+import me.dan.pluginapi.*;
 import me.dan.pluginapi.configuration.Configuration;
 import me.dan.pluginapi.configuration.Serialization;
 import me.dan.pluginapi.file.YamlFile;
@@ -58,6 +59,10 @@ public final class SkyblockCore extends CustomPlugin {
         this.petManager = new PetManager();
         this.hoeManager = new HarvesterHoeManager();
         //
+
+
+        PluginAPI.getInstance().getMenuManager().registerPerformMethod(Config.HARVESTER_HOE_MAIN_GUI.getMenu(), new HoeMenuPerform());
+        PluginAPI.getInstance().getMenuManager().registerPerformMethod(Config.HARVESTER_HOE_ENCHANTS_GUI.getMenu(), new EnchantMenuPerform());
     }
 
     @Override

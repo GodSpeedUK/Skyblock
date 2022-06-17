@@ -20,7 +20,7 @@ public class HoeAbilitiesListener implements Listener{
 
     @EventHandler
     public void clickAbilitiesMenu(InventoryClickEvent event) {
-        Player player = (Player) event.getWhoClicked();
+       /* Player player = (Player) event.getWhoClicked();
         Inventory open = event.getClickedInventory();
         HarvesterHoeManager hoeManager = SkyblockCore.getInstance().getHoeManager();
 
@@ -32,7 +32,7 @@ public class HoeAbilitiesListener implements Listener{
         event.setCancelled(true);
 
         if (event.getCurrentItem().getType() == Material.BARRIER) {
-            player.openInventory(hoeManager.mainGUI(player));
+            hoeManager.mainGUI(player);
         }
 
         if (event.getCurrentItem().getType() == Material.SEEDS) {
@@ -61,7 +61,6 @@ public class HoeAbilitiesListener implements Listener{
             meta.setLore(updatedLore);
             item.setItemMeta(meta);
 
-            return;
-        }
+            return;*/
     }
 }
