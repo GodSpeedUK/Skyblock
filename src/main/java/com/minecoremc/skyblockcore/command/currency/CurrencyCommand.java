@@ -12,7 +12,7 @@ public class CurrencyCommand extends AbstractCommand {
         setAliases(Collections.singletonList(""));
         setUsage("/currency (type) (player) (amount)");
         setPermission("skyblock.currency.admin");
-        addSubCommands(new CrystalsCommand());
+        addSubCommands(new CrystalsCommand(), new SoulsCommand());
     }
 
     @Override

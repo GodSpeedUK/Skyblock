@@ -23,7 +23,6 @@ public class HarvesterHoeListener implements Listener {
 
         if (!action.equals(Action.RIGHT_CLICK_BLOCK) && !action.equals(Action.RIGHT_CLICK_AIR)) return;
         if (!player.getInventory().getItemInHand().getItemMeta().getDisplayName().equals(hoeManager.makeHoe(player).getItemMeta().getDisplayName())) return;
-
         if (!player.isSneaking()) return;
 
         player.openInventory(hoeManager.mainGUI(player));
@@ -60,6 +59,7 @@ public class HarvesterHoeListener implements Listener {
         Inventory open = event.getClickedInventory();
         HarvesterHoeManager hoeManager = SkyblockCore.getInstance().getHoeManager();
 
+        if (open == null) return;
         if (!(open.getHolder() == hoeManager.mainGUI(player).getHolder())) return;
         event.setCancelled(true);
 

@@ -24,13 +24,13 @@ public class GiveHoeCommand extends AbstractSubCommand {
         Player player = (Player) commandContext.getCommandSender();
         String[] args = commandContext.getArgs();
 
-        Player p = Bukkit.getPlayer(args[1]);
+        OfflinePlayer p = Bukkit.getPlayer(args[1]);
 
         if (p == null) {
             Message.PLAYER_NOT_FOUND.send(player, new Placeholder("{player}", args[1]));
             return;
         }
 
-        player.getInventory().addItem(SkyblockCore.getInstance().getHoeManager().makeHoe(player));
+        p.getPlayer().getInventory().addItem(SkyblockCore.getInstance().getHoeManager().makeHoe(p.getPlayer()));
     }
 }

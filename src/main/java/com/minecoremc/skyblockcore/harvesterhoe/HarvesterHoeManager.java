@@ -25,10 +25,22 @@ public class HarvesterHoeManager {
         HarvesterHoe harvesterHoe = new HarvesterHoe();
 
 
-        ItemStack itemStack = Item.builder().material(harvesterHoe.getMaterial().toString()).name(harvesterHoe.getName())
-                .lore(Arrays.asList("&7Using a harvester hoe, gives you a major", "&7advantage when harvesting crops!",
-                        "", "&e&lLeveling", "&e ● &bLevel: &f" + uld.getHoeLevel() + "&7/&f5", "&e ● &bExp: &f" + uld.getHoeExp() + "&7/&f75",
-                        "", "&b&lAbilities")).build().toItemStack();
+        ItemStack itemStack = new ItemStack(harvesterHoe.getMaterial());
+        ItemMeta meta = itemStack.getItemMeta();
+        meta.setDisplayName(ChatUtil.chat(harvesterHoe.getName()));
+        List<String> lore = new ArrayList<>();
+
+        lore.add(ChatUtil.chat("&7Using a harvester hoe, gives you a major"));
+        lore.add(ChatUtil.chat("&7advantage when harvesting crops!"));
+        lore.add(ChatUtil.chat(""));
+        lore.add(ChatUtil.chat("&e&lLeveling"));
+        lore.add(ChatUtil.chat("&e ● &bLevel: &f" + uld.getHoeLevel() + "&7/&f5"));
+        lore.add(ChatUtil.chat("&e ● &bExp: &f" + uld.getHoeExp() + "&7/&f75"));
+        lore.add(ChatUtil.chat(""));
+        lore.add(ChatUtil.chat("&b&lAbilities"));
+
+        meta.setLore(lore);
+        itemStack.setItemMeta(meta);
 
         return itemStack;
     }
@@ -74,13 +86,12 @@ public class HarvesterHoeManager {
             inventory.setItem(i, new ItemStack(Material.STAINED_GLASS_PANE,  1, (short) 3));
         }
 
-        ItemStack back = Item.builder().material("BARRIER").name("&c&lBACK").lore(Arrays.asList()).build().toItemStack();
+        ItemStack back = Builder.nameItem(Material.BARRIER, "&c&lBACK", (short) 1, 1, Arrays.asList(""));
 
-        ItemStack merchant = Item.builder().material("SEEDS").name("&a&lMerchant").lore(Arrays.asList(
-                "&7(( Chance to double crops while harvesting )) ", "", "&e● &bPrice: &f" + 2250 * ued.getMerchantLVL(),
-                "&e● &bLevel: &f" + ued.getMerchantLVL(), "&e● &bMax Level: 5", "",
-                "&7&o(( &f&oLeft-Click &7&oto purchase enchant! ))")).build().toItemStack();
-
+        ItemStack merchant = Builder.nameItem(Material.SEEDS, "&a&lMerchant", (short) 1, 1, Arrays.asList
+                ("&7(( Chance to double crops while harvesting )) ", "", "&e● &bPrice: &f" + 2250 * ued.getMerchantLVL(),
+                        "&e● &bLevel: &f" + ued.getMerchantLVL(), "&e● &bMax Level: 5", "",
+                        "&7&o(( &f&oLeft-Click &7&oto purchase enchant! ))"));
 
 
         inventory.setItem(18, back);

@@ -7,7 +7,6 @@ import com.minecoremc.skyblockcore.pets.manager.*;
 import com.minecoremc.skyblockcore.user.*;
 import com.minecoremc.skyblockcore.utils.*;
 import me.dan.pluginapi.user.*;
-import net.brcdev.shopgui.event.*;
 import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.entity.*;

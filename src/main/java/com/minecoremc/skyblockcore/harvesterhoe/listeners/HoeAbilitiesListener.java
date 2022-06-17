@@ -31,7 +31,7 @@ public class HoeAbilitiesListener implements Listener{
         event.setCancelled(true);
 
         if (event.getSlot() == 18) {
-            player.openInventory(hoeManager.mainGUI(player));
+            hoeManager.mainGUI(player);
         }
 
         if (event.getCurrentItem().getType() == Material.SEEDS) {

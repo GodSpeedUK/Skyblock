@@ -78,7 +78,7 @@
         <dependency>
             <groupId>com.github.iCode-Things</groupId>
             <artifactId>PluginAPI</artifactId>
-            <version>1.7.1</version>
+            <version>1.7.3</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -97,12 +97,6 @@
             <groupId>com.github.mcdoeswhat</groupId>
             <artifactId>skullapi-r</artifactId>
             <version>1.1.10</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.brcdev-minecraft</groupId>
-            <artifactId>shopgui-api</artifactId>
-            <version>LATEST</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
