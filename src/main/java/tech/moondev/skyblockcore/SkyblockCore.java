@@ -44,7 +44,6 @@ public final class SkyblockCore extends CustomPlugin {
     private ScoreboardManager scoreboardManager;
 
 
-    private HarvesterHoeManager hoeManager;
     private PetManager petManager;
 
     @Override
@@ -59,18 +58,14 @@ public final class SkyblockCore extends CustomPlugin {
         //Serialization.register(ValuableBlock.class);
         Configuration.loadConfig(new YamlFile("config.yml", this.getDataFolder().getAbsolutePath(), null, this), Config.values());
         Configuration.loadConfig(new YamlFile("messages.yml", this.getDataFolder().getAbsolutePath(), null, this), Message.values());
-        registerCommands(new IslandCommand(), new PetCommand(), new HarvesterHoeCommand(), new CurrencyCommand(), new CrystalShopCommand());
+        registerCommands(new IslandCommand(), new PetCommand(), new CurrencyCommand(), new CrystalShopCommand());
         this.islandManager = new IslandManager();
         this.scoreboardManager = new ScoreboardManager(new Scoreboard());
-        registerEvents(scoreboardManager, new PetPlaceListener(), new MoneyPetListener(), new HarvesterHoeListener(), new HoeAbilitiesListener());
+        registerEvents(scoreboardManager, new PetPlaceListener(), new MoneyPetListener());
 
         this.petManager = new PetManager();
-        this.hoeManager = new HarvesterHoeManager();
         //
 
-
-        PluginAPI.getInstance().getMenuManager().registerPerformMethod(Config.HARVESTER_HOE_MAIN_GUI.getMenu(), new HoeMenuPerform());
-        PluginAPI.getInstance().getMenuManager().registerPerformMethod(Config.HARVESTER_HOE_ENCHANTS_GUI.getMenu(), new EnchantMenuPerform());
         PluginAPI.getInstance().getMenuManager().registerPerformMethod(Config.CRYSTAL_SHOP_GUI.getMenu(), new CrystalShopMenuPerform());
     }
 
